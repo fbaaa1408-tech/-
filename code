@@ -1,0 +1,53 @@
+import React, { useState } from "react";
+import { View, Text, TextInput, Button, ScrollView } from "react-native";
+
+export default function App() {
+  const [symbol, setSymbol] = useState("");
+  const [data, setData] = useState(null);
+
+  const analyze = async () => {
+    const res = await fetch(
+      `https://YOUR-VERCEL-API.vercel.app/api/analyze?symbol=${symbol}`
+    );
+    const json = await res.json();
+    setData(json);
+  };
+
+  return (
+    <ScrollView style={{ padding: 20, marginTop: 50 }}>
+
+      <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+        📊 سهمي Pro
+      </Text>
+
+      <TextInput
+        placeholder="AAPL"
+        onChangeText={setSymbol}
+        style={{
+          borderWidth: 1,
+          marginVertical: 10,
+          padding: 10
+        }}
+      />
+
+      <Button title="تحليل" onPress={analyze} />
+
+      {data && (
+        <View style={{ marginTop: 20 }}>
+
+          <Text>💰 السعر: {data.price}</Text>
+          <Text>📊 RSI: {data.rsi}</Text>
+          <Text>📈 الإشارة: {data.signal}</Text>
+
+          <Text>🕌 الحالة الشرعية: {data.sharia.status}</Text>
+          <Text>{data.sharia.reason}</Text>
+
+          <Text>🤖 تحليل AI:</Text>
+          <Text>{data.ai}</Text>
+
+        </View>
+      )}
+
+    </ScrollView>
+  );
+}
