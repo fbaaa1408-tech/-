@@ -1,5 +1,17 @@
 # -
-تأسيس المتعلم بشكل صحيح من الصفر 
+تأسيس المتعلم بشكل صحيح من الصفر
+ SoundStart-English-Audio/
+│
+├── Basic Version/
+│   ├── A.mp3
+│   ├── B.mp3
+│   └── ...
+│
+├── Advanced Version/
+│   ├── A_Sound.mp3
+│   ├── A_Words.mp3
+│   ├── A_Sentences.mp3
+│   └── ...
 A.mp3
 B.mp3
 C.mp3
